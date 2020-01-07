@@ -1,5 +1,6 @@
 package org.goodev.atm;
 
+import javax.inject.Inject;
 import java.util.*;
 
 /**
@@ -9,8 +10,8 @@ public final class CommandRouter {
 
     private final Map<String, Command> commands = new HashMap<>();
 
-    public CommandRouter() {
-        HelloWorldCommand helloWorld = new HelloWorldCommand();
+    @Inject
+    public CommandRouter(HelloWorldCommand helloWorld) {
         commands.put(helloWorld.key(), helloWorld);
     }
 
