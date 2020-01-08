@@ -13,11 +13,6 @@ public class LoginCommand extends SingleArgCommand {
     }
 
     @Override
-    public String key() {
-        return "登录";
-    }
-
-    @Override
     protected Status handleArg(String username) {
         mOutputter.output(username + " 已登录。");
         return Status.HANDLED;

@@ -8,11 +8,14 @@ import java.util.*;
  */
 public final class CommandRouter {
 
-    private final Map<String, Command> commands = new HashMap<>();
+    private final Map<String, Command> commands;
 
     @Inject
-    public CommandRouter(Command command) {
-        commands.put(command.key(), command);
+    public CommandRouter(Map<String, Command> commands) {
+        // 现在这个 Dagger 注入的 commands 参数包含两个对象：
+        // "hello" -> HelloWorldCommand
+        // "登录" -> LoginCommand
+        this.commands = commands;
     }
 
     Command.Status route(String input) {
