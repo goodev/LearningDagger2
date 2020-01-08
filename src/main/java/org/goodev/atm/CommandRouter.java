@@ -15,6 +15,7 @@ public final class CommandRouter {
         // 现在这个 Dagger 注入的 commands 参数包含两个对象：
         // "hello" -> HelloWorldCommand
         // "登录" -> LoginCommand
+        // 需要注意 Dagger 生成的集合是不可修改的（UnmodifiableMap）
         this.commands = commands;
     }
 
