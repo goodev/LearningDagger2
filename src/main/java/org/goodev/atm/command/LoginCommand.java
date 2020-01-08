@@ -11,6 +11,7 @@ public class LoginCommand extends SingleArgCommand {
 
     @Inject
     public LoginCommand(Outputter outputter, Database database){
+        System.err.println("创建 LoginCommand ："+this);
         mOutputter = outputter;
         mDatabase = database;
     }

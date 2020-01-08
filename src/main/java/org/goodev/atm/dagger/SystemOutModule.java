@@ -8,7 +8,9 @@ import org.goodev.atm.Outputter;
 public abstract class SystemOutModule {
     @Provides
     static Outputter textOutputter() {
-        return System.err::println;
+        Outputter outputter = System.err::println;
+        System.out.println("创建 Outputter ：" + outputter);
+        return outputter;
     }
 
     // 上面的实现是 Java Lambda 表达式的方法引用方式。所以代码看起来比较简单。

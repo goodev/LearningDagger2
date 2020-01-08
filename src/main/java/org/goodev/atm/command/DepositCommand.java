@@ -17,6 +17,7 @@ public class DepositCommand implements Command {
 
     @Inject
     public DepositCommand(Database database, Outputter outputter) {
+        System.err.println("创建 DepositCommand ："+this);
         mDatabase = database;
         mOutputter = outputter;
     }
