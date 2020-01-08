@@ -17,10 +17,10 @@ public class LoginCommand extends SingleArgCommand {
     }
 
     @Override
-    protected Status handleArg(String username) {
+    protected Result handleArg(String username) {
         Database.Account account = mDatabase.getAccount(username);
         mOutputter.output(username + " 已登录。账号余额为 "+account.balance());
-        return Status.HANDLED;
+        return Result.handled();
     }
 
 

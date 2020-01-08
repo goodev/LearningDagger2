@@ -19,20 +19,20 @@ public final class CommandRouter {
         this.commands = commands;
     }
 
-    Command.Status route(String input) {
+    Command.Result route(String input) {
         List<String> splitInput = split(input);
         if (splitInput.isEmpty()) {
-            return invalidCommand(input);
+            return Command.Result.invalid();
         }
 
         String commandKey = splitInput.get(0);
         Command command = commands.get(commandKey);
         if (command == null) {
-            return invalidCommand(input);
+            return Command.Result.invalid();
         }
 
-        Command.Status status = command.handleInput(splitInput.subList(1, splitInput.size()));
-        if (status == Command.Status.INVALID) {
+        Command.Result status = command.handleInput(splitInput.subList(1, splitInput.size()));
+        if (status.status() == Command.Status.INVALID) {
             System.out.println(commandKey + ": 命令参数不合法");
         }
         return status;

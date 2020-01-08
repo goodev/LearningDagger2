@@ -1,7 +1,7 @@
 package org.goodev.atm;
 
-import org.goodev.atm.dagger.CommandRouterFactory;
-import org.goodev.atm.dagger.DaggerCommandRouterFactory;
+import org.goodev.atm.dagger.CommandProcessorFactory;
+import org.goodev.atm.dagger.DaggerCommandProcessorFactory;
 
 import java.util.Scanner;
 
@@ -12,13 +12,11 @@ public class CommandLineAtm {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        //DaggerCommandRouterFactory 类有 Dagger 自动生成
-        CommandRouterFactory factory = DaggerCommandRouterFactory.create();
-        // 由 Dagger 来提供 CommandRouter 对象
-        CommandRouter commandRouter = factory.router();
+        CommandProcessorFactory factory = DaggerCommandProcessorFactory.create();
+        CommandProcessor commandProcessor = factory.processor();
 
         while (scanner.hasNextLine()) {
-            Command.Status status = commandRouter.route(scanner.nextLine());
+            Command.Status status = commandProcessor.process(scanner.nextLine());
 
         }
     }

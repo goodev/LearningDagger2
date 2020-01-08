@@ -8,10 +8,10 @@ import java.util.List;
 public abstract class SingleArgCommand implements Command {
 
     @Override
-    public final Status handleInput(List<String> input) {
-        return input.size() == 1 ? handleArg(input.get(0)) : Status.INVALID;
+    public final Result handleInput(List<String> input) {
+        return input.size() == 1 ? handleArg(input.get(0)) : Result.invalid();
     }
 
     /** 命令用来处理单个输入的参数 */
-    protected abstract Status handleArg(String arg);
+    protected abstract Result handleArg(String arg);
 }
