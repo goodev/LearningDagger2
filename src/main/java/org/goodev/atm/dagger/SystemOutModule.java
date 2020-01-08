@@ -4,8 +4,11 @@ import dagger.Module;
 import dagger.Provides;
 import org.goodev.atm.Outputter;
 
+import javax.inject.Singleton;
+
 @Module
 public abstract class SystemOutModule {
+    @Singleton
     @Provides
     static Outputter textOutputter() {
         Outputter outputter = System.err::println;
