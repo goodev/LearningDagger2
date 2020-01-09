@@ -6,6 +6,7 @@ import dagger.Subcomponent;
 import org.goodev.atm.CommandRouter;
 import org.goodev.atm.Database;
 
+@PerSession
 @Subcomponent(modules = UserCommandsModule.class)
 public interface UserCommandsRouter {
     CommandRouter router();

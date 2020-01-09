@@ -1,10 +1,12 @@
 package org.goodev.atm;
 
 import org.goodev.atm.dagger.MaximumWithdraw;
+import org.goodev.atm.dagger.PerSession;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
 
+@PerSession
 public final class WithdrawalLimiter {
     private BigDecimal mRemainingLimit;
 
