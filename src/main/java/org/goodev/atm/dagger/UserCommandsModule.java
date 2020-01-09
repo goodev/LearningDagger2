@@ -7,6 +7,7 @@ import dagger.multibindings.IntoMap;
 import dagger.multibindings.StringKey;
 import org.goodev.atm.Command;
 import org.goodev.atm.command.DepositCommand;
+import org.goodev.atm.command.LogoutCommand;
 import org.goodev.atm.command.WithdrawCommand;
 
 import java.math.BigDecimal;
@@ -23,6 +24,11 @@ public abstract class UserCommandsModule {
     @IntoMap
     @StringKey("取款")
     abstract Command withdrawCommand(WithdrawCommand command);
+
+    @Binds
+    @IntoMap
+    @StringKey("退出")
+    abstract Command logoutCommand(LogoutCommand command);
 
 
     @Provides
