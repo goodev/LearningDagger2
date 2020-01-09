@@ -1,5 +1,6 @@
 package org.goodev.atm.command;
 
+import dagger.Lazy;
 import org.goodev.atm.Database;
 import org.goodev.atm.Outputter;
 import org.goodev.atm.dagger.UserCommandsRouter;
@@ -9,12 +10,12 @@ import java.util.Optional;
 
 public class LoginCommand extends SingleArgCommand {
     private final Outputter mOutputter;
-    private final Database mDatabase;
+    private final Lazy<Database> mDatabase;
     private final UserCommandsRouter.Factory mFactory;
     private final Optional<Database.Account> mAccount;
 
     @Inject
-    public LoginCommand(Outputter outputter, Database database, UserCommandsRouter.Factory factory,
+    public LoginCommand(Outputter outputter, Lazy<Database> database, UserCommandsRouter.Factory factory,
                         Optional<Database.Account> account) {
         System.err.println("创建 LoginCommand ：" + this);
         mOutputter = outputter;
@@ -30,7 +31,7 @@ public class LoginCommand extends SingleArgCommand {
             mOutputter.output(mAccount.get().username() + " 已经登录了。");
             return Result.handled();
         }
-        Database.Account account = mDatabase.getAccount(username);
+        Database.Account account = mDatabase.get().getAccount(username);
         mOutputter.output(username + " 已登录。账号余额为 " + account.balance());
         return Result.enterNestedCommandSet(mFactory.create(account).router());
     }
