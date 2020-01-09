@@ -2,11 +2,14 @@ package org.goodev.atm.dagger;
 
 import dagger.Binds;
 import dagger.Module;
+import dagger.Provides;
 import dagger.multibindings.IntoMap;
 import dagger.multibindings.StringKey;
 import org.goodev.atm.Command;
 import org.goodev.atm.command.DepositCommand;
 import org.goodev.atm.command.WithdrawCommand;
+
+import java.math.BigDecimal;
 
 @Module
 public abstract class UserCommandsModule {
@@ -20,4 +23,19 @@ public abstract class UserCommandsModule {
     @IntoMap
     @StringKey("取款")
     abstract Command withdrawCommand(WithdrawCommand command);
+
+
+    @Provides
+    @MinimumBalance
+    static BigDecimal minimumBalance() {
+        return BigDecimal.ZERO;
+    }
+
+
+    @Provides
+    @MaximumWithdraw
+    static BigDecimal maximumWithdrawal() {
+        return new BigDecimal(3000);
+    }
+
 }
