@@ -13,7 +13,7 @@ public class Database {
 
     @Inject
     public Database() {
-        System.out.println("创建 Database ："+this);
+        System.out.println("创建 Database ：" + this);
     }
 
     public Account getAccount(String name) {

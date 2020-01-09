@@ -11,7 +11,7 @@ public final class HelloWorldCommand implements Command {
 
     @Inject
     HelloWorldCommand(Outputter outputter) {
-        System.err.println("创建 HelloWorldCommand "+this);
+        System.err.println("创建 HelloWorldCommand " + this);
         mOutputter = outputter;
     }
 

@@ -12,24 +12,23 @@ import java.util.List;
  * 处理用户存款的操作
  */
 public class DepositCommand implements Command {
-    private final Database mDatabase;
+    private final Database.Account mAccount;
     private final Outputter mOutputter;
 
     @Inject
-    public DepositCommand(Database database, Outputter outputter) {
-        System.err.println("创建 DepositCommand ："+this);
-        mDatabase = database;
+    public DepositCommand(Database.Account account, Outputter outputter) {
+        System.err.println("创建 DepositCommand ：" + this);
+        mAccount = account;
         mOutputter = outputter;
     }
 
     @Override
     public Result handleInput(List<String> input) {
-        if (input.size() != 2) {
+        if (input.size() != 1) {
             return Result.invalid();
         }
-        Database.Account account = mDatabase.getAccount(input.get(0));
-        account.deposit(new BigDecimal(input.get(1)));
-        mOutputter.output(account.username() + " 现在的余额是： " + account.balance());
+        mAccount.deposit(new BigDecimal(input.get(0)));
+        mOutputter.output(mAccount.username() + " 现在的余额是： " + mAccount.balance());
         return Result.handled();
     }
 }

@@ -1,7 +1,9 @@
 package org.goodev.atm;
 
 import javax.inject.Inject;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 管理所有命令，并根据用户输入来选择对应的类来处理。
@@ -12,6 +14,7 @@ public final class CommandRouter {
 
     @Inject
     public CommandRouter(Map<String, Command> commands) {
+        System.out.println("创建 CommandRouter " + this + "。 所包含的命令有 : " + commands.keySet());
         // 现在这个 Dagger 注入的 commands 参数包含两个对象：
         // "hello" -> HelloWorldCommand
         // "登录" -> LoginCommand

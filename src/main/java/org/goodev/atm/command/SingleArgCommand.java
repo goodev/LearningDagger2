@@ -4,7 +4,9 @@ import org.goodev.atm.Command;
 
 import java.util.List;
 
-/** 一个只接受单个参数的命令处理抽象类 */
+/**
+ * 一个只接受单个参数的命令处理抽象类
+ */
 public abstract class SingleArgCommand implements Command {
 
     @Override
@@ -12,6 +14,8 @@ public abstract class SingleArgCommand implements Command {
         return input.size() == 1 ? handleArg(input.get(0)) : Result.invalid();
     }
 
-    /** 命令用来处理单个输入的参数 */
+    /**
+     * 命令用来处理单个输入的参数
+     */
     protected abstract Result handleArg(String arg);
 }

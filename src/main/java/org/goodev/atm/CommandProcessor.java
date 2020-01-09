@@ -15,7 +15,10 @@ public final class CommandProcessor {
     }
 
     Command.Status process(String input) {
-        Command.Result result = commandRouterStack.peek().route(input);
+        System.out.println("commandRouterStack size : " + commandRouterStack.size());
+        CommandRouter router = commandRouterStack.peek();
+        Command.Result result = router.route(input);
+        System.out.println("first router " + router + " result " + result.status());
         if (result.status().equals(Command.Status.INPUT_COMPLETED)) {
             commandRouterStack.pop();
             return commandRouterStack.isEmpty()
